@@ -1,97 +1,33 @@
 import React from 'react'
 import Router from 'next/router'
+import 'isomorphic-unfetch'
+import "../styles.styl"
 
-import Modal from '../components/modal'
 import Layout from '../components/layout'
 
 export default class extends React.Component {
-  static getInitialProps () {
-    console.log('recargando')
+  static async getInitialProps () {
+    const res = await fetch('https://glacial-hollows-73183.herokuapp.com/api/restaurants')
+    const json = await res.json()
     return {
-      photos: new Array(15).fill(0).map((v, k) => k + 1)
+      restaurants: json
     }
-  }
-
-  constructor (props) {
-    super(props)
-    this.onKeyDown = this.onKeyDown.bind(this)
-  }
-
-  // handling escape close
-  componentDidMount () {
-    document.addEventListener('keydown', this.onKeyDown)
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('keydown', this.onKeyDown)
-  }
-
-  onKeyDown (e) {
-    if (!this.props.url.query.photoId) return
-    if (e.keyCode === 27) {
-      this.props.url.back()
-    }
-  }
-
-  dismissModal () {
-    Router.push('/')
-  }
-
-  showPhoto (e, id) {
-    e.preventDefault()
-    Router.push(`/?photoId=${id}`, `/photo?id=${id}`)
   }
 
   render () {
-    const { url, photos } = this.props
+    const { url, restaurants } = this.props
 
     return (
       <Layout>
-        <div className='list'>
+        <div className="example">Hello Wariques!</div>
+        <div>
         {
-          url.query.photoId &&
-            <Modal
-              id={url.query.photoId}
-              onDismiss={() => this.dismissModal()}
-            />
-        }
-        {
-          photos.map((id) => (
-            <div key={id} className='photo'>
-              <a
-                className='photoLink'
-                href={`/photo?id=${id}`}
-                onClick={(e) => this.showPhoto(e, id)}
-              >
-                {id}
-              </a>
+          restaurants.map((item) => (
+            <div key={item._id}>
+                {item.name}
             </div>
           ))
         }
-        <style jsx>{`
-          .list {
-            padding: 50px;
-            text-align: center;
-          }
-          .photo {
-            display: inline-block;
-          }
-          .photoLink {
-            color: #333;
-            verticalAlign: middle;
-            cursor: pointer;
-            background: #eee;
-            display: inline-block;
-            width: 250px;
-            height: 250px;
-            line-height: 250px;
-            margin: 10px;
-            border: 2px solid transparent;
-          }
-          .photoLink:hover {
-            borderColor: blue;
-          }
-        `}</style>
         </div>
       </Layout>
     )

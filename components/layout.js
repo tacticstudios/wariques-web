@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Head from 'next/head'
 
-export default ({ children, title = 'This is the default title' }) => (
+export default ({ children, title = 'Wariques' }) => (
   <div>
     <Head>
       <title>{ title }</title>
@@ -10,16 +10,14 @@ export default ({ children, title = 'This is the default title' }) => (
     </Head>
     <header>
       <nav>
-        <Link href='/'><a>Home</a></Link> |
-        <Link href='/about'><a>About</a></Link> |
-        <Link href='/contact'><a>Contact</a></Link>
+        <Link href='/'><a>Wariques</a></Link>
       </nav>
     </header>
 
     { children }
 
     <footer>
-      {'I`m here to stay'}
+      {'Soy el pinchi futer'}
     </footer>
   </div>
 )

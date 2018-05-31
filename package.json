@@ -15,8 +15,11 @@
   "author": "tactic",
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-stylus": "^0.1.0",
+    "isomorphic-unfetch": "^2.0.0",
     "next": "^6.0.3",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "stylus": "^0.54.5"
   }
 }
