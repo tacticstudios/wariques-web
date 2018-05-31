@@ -2,9 +2,11 @@ import React from 'react'
 import Router from 'next/router'
 
 import Modal from '../components/modal'
+import Layout from '../components/layout'
 
 export default class extends React.Component {
   static getInitialProps () {
+    console.log('recargando')
     return {
       photos: new Array(15).fill(0).map((v, k) => k + 1)
     }
@@ -44,7 +46,8 @@ export default class extends React.Component {
     const { url, photos } = this.props
 
     return (
-      <div className='list'>
+      <Layout>
+        <div className='list'>
         {
           url.query.photoId &&
             <Modal
@@ -89,7 +92,8 @@ export default class extends React.Component {
             borderColor: blue;
           }
         `}</style>
-      </div>
+        </div>
+      </Layout>
     )
   }
 }
