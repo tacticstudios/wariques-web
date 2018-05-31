@@ -1,0 +1,22 @@
+{
+  "name": "wariques-web",
+  "version": "1.0.0",
+  "description": "Wariques web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [
+    "wariques"
+  ],
+  "author": "tactic",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^6.0.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  }
+}
